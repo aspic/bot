@@ -3,7 +3,6 @@ package slack
 
 import (
 	"fmt"
-
 	"github.com/go-chat-bot/bot"
 	"github.com/nlopes/slack"
 )
@@ -14,7 +13,8 @@ var (
 )
 
 func responseHandler(target string, message string, sender *bot.User) {
-	rtm.SendMessage(rtm.NewOutgoingMessage(message, target))
+	params := slack.PostMessageParameters{AsUser: true}
+	api.PostMessage(target, message, params)
 }
 
 // Extracts user information from slack API
